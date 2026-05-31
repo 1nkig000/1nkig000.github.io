@@ -78,7 +78,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2026/05/19/c.网安学习/rev知识点/花指令ai/"/>
+    <link rel="canonical" href="http://example.com/2026/05/16/c.语言/【缺】rust 学习/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -87,15 +87,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="花指令之理论记录">
-<meta property="og:url" content="http://example.com/2026/05/19/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/%E8%8A%B1%E6%8C%87%E4%BB%A4ai/index.html">
+<meta property="og:title" content="Rust语言基础篇">
+<meta property="og:url" content="http://example.com/2026/05/16/C.%E8%AF%AD%E8%A8%80/%E3%80%90%E7%BC%BA%E3%80%91Rust%20%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-05-19T05:15:00.000Z">
-<meta property="article:modified_time" content="2026-05-25T06:50:55.308Z">
+<meta property="article:published_time" content="2026-05-16T07:55:00.000Z">
+<meta property="article:modified_time" content="2026-05-31T11:44:57.382Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Rust">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -110,7 +111,7 @@
     
     <title>
         
-            花指令之理论记录 | インキゴのBLOG
+            Rust语言基础篇 | インキゴのBLOG
         
     </title>
 
@@ -282,7 +283,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -305,7 +306,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">花指令之理论记录</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Rust语言基础篇</h1>
 			</div>
 			
 		</div>
@@ -326,15 +327,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-05-19 13:15</span>
-        <span class="mobile">2026-05-19 13:15</span>
+        <span class="desktop">2026-05-16 15:55</span>
+        <span class="mobile">2026-05-16 15:55</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-05-25 14:50:55</span>
-            <span class="mobile">2026-05-25 14:50:55</span>
+            <span class="desktop">2026-05-31 19:44:57</span>
+            <span class="mobile">2026-05-31 19:44:57</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -347,6 +348,10 @@
                 
                     <li>
                         <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Rust/">Rust</a>&nbsp;
                     </li>
                 
             </ul>
@@ -372,291 +377,38 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p><em>花指令的考点是找到干扰反汇编软件的垃圾指令，并且进行<strong>nop</strong>从而使得反汇编软件找到真正的内容</em></p>
-<p>CTF-REV 里的“花指令”本质是<strong>干扰反汇编&#x2F;反编译、混淆控制流或污染数据流的无效&#x2F;误导性指令</strong>。常见类型和修改思路如下。</p>
-<p><strong>常见类型</strong></p>
-<ul>
-<li><strong>无效跳转型</strong>：<code>jmp</code> 跳到下一条、<code>jz/jnz</code> 条件恒真&#x2F;恒假、成对跳转绕圈。</li>
-<li><strong>垃圾指令型</strong>：插入不影响结果的 <code>nop</code>、<code>xchg reg, reg</code>、<code>mov reg, reg</code>、<code>push/pop</code> 成对操作。</li>
-<li><strong>栈平衡干扰型</strong>：伪造 <code>push</code>&#x2F;<code>pop</code>、<code>call</code>&#x2F;<code>ret</code>，让 IDA&#x2F;Ghidra 误判函数边界或栈变量。</li>
-<li><strong>反汇编错位型</strong>：跳过中间字节，故意让线性反汇编从错误位置解析指令。</li>
-<li><strong>opaque predicate 型</strong>：看似复杂但结果固定的条件判断，例如永远成立&#x2F;永远不成立的数学表达式。</li>
-<li><strong>异常&#x2F;SEH 型</strong>：通过异常处理、非法指令、<code>int3</code>、访问异常来转移控制流。</li>
-<li><strong>自修改代码型</strong>：运行时解密或改写代码段，静态反汇编看到的是假代码。</li>
-<li><strong>API&#x2F;控制流间接化</strong>：<code>call reg</code>、<code>jmp [mem]</code>、函数指针表、虚拟机壳 VMProtect 类控制流虚拟化。</li>
-<li><strong>重叠指令型</strong>：同一段字节从不同入口反汇编成不同指令。</li>
-<li><strong>反调试混合型</strong>：<code>rdtsc</code>、<code>IsDebuggerPresent</code>、<code>PEB</code> 检测、<code>int 2d</code> 等和花指令组合。</li>
-</ul>
-<p><strong>怎么改</strong></p>
-<ul>
-<li><strong>NOP 掉无效指令</strong>：把垃圾指令、无意义跳转改成 <code>90</code>，保持代码长度不变。</li>
-<li><strong>改条件跳转</strong>：把恒真&#x2F;恒假的 <code>jz/jnz/ja/jb</code> 改成 <code>jmp</code> 或直接 <code>nop</code> 掉。</li>
-<li><strong>修正反汇编起点</strong>：在 IDA&#x2F;Ghidra 中取消错误代码定义，重新从真实入口 <code>C</code> &#x2F; Make Code。</li>
-<li><strong>Patch 跳转目标</strong>：把跳到混淆块的分支改到真实逻辑块。</li>
-<li><strong>修复栈平衡</strong>：删除或配平多余 <code>push/pop/add esp/sub esp</code>，避免反编译器栈分析错误。</li>
-<li><strong>运行后 Dump</strong>：遇到自修改&#x2F;加壳&#x2F;解密代码，先动态跑到解密完成，再 dump 内存重建 IAT。</li>
-<li><strong>脚本批量处理</strong>：大量 <code>nop</code>、恒定跳转、垃圾块可用 IDAPython&#x2F;Ghidra Script 批量 patch。</li>
-<li><strong>动态调试确认</strong>：用 x64dbg&#x2F;OllyDbg&#x2F;WinDbg 单步确认真实执行路径，再回静态工具修控制流。</li>
-</ul>
-<p><strong>典型例子</strong></p>
-<p>无意义跳转：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jmp short loc_next</span><br><span class="line">db 0E8h, 12h, 34h, 56h</span><br><span class="line">loc_next:</span><br><span class="line">mov eax, 1</span><br></pre></td></tr></table></figure></div>
-<p><em>产生原因：<br>0xe8是<code>call</code>的操作码 ，反汇编软件在看到jmp同时也会看一下0xe8的内容但是反汇编软件其实分辨不出来，反汇编软件还会再看一下里面的内容，从而导致错误</em></p>
-<p>修改方式：中间 <code>db</code> 是干扰字节，不需要管；确认真实执行流从 <code>loc_next</code> 开始后，在 IDA 里把错误反汇编 nop掉。</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jmp short loc_next</span><br><span class="line">nop</span><br><span class="line">nop</span><br><span class="line">nop</span><br><span class="line">nop</span><br><span class="line">loc_next:</span><br><span class="line">mov eax,1</span><br></pre></td></tr></table></figure></div>
+			<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>强类型 但是有类型定义<br>用<code>let</code>进行命令 可以通过<code>let 变量=赋值</code><br>一般情况是不改变的，但是<code>let mut a=123;</code>就是后期可变的变量</p>
+<h3 id="类型定义"><a href="#类型定义" class="headerlink" title="类型定义"></a>类型定义</h3><p>有i32（int32位有符号）、u32（int32位无符号）、f64（64位float）、bool、char这几类，无double。<br>表示方式：<code>let 变量: 类型=赋值; </code><br>char型赋值带单引号，bool类型是用true和false进行赋值（赋值true能正常出现内容，但是1的话就会报错）</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p><code>println!(&quot;{}&quot;,变量);</code><br>其中{}是占位符（和c差不多）</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> 函数名(变量<span class="number">1</span>:变量类型<span class="number">1</span>，变量<span class="number">2</span>:变量类型<span class="number">2</span>)<span class="punctuation">-&gt;</span>返回类型&#123;</span><br><span class="line">	函数体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>如果函数没有返回值类型默认为空元组 箭头可有可无 有的话就在返回类型后用<code>()</code>进行占位</p>
+<blockquote>
+<p>但是实际用的感觉好奇怪 因为无返回类型就返回<code>()</code> 会导致如果是输出型的话会多个<code>()</code>(?</p>
+</blockquote>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> a&lt;<span class="number">5</span>&#123;</span><br><span class="line">	<span class="keyword">do</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="keyword">do</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>条件恒定：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax ;相同为0 </span><br><span class="line">test eax, eax</span><br><span class="line">jnz fake_block ;jz/jnz是检测ZF位的真假决定跳不跳 因为异或完了后全都是0所以ZF=1 由此可得jnz时不跳转 </span><br></pre></td></tr></table></figure></div>
-
-
-<p>但是反汇编的时候会出错 所以直接nop就好 不必再多干<br>这里 <code>eax = 0</code>，<code>test eax,eax</code> 后 ZF&#x3D;1，<code>jnz</code> 永远不跳。可以把 <code>jnz fake_block</code> 改成 NOP：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">90 90</span><br></pre></td></tr></table></figure></div>
-
-<p>或者直接让反编译器忽略 <code>fake_block</code>。</p>
-<p>栈干扰：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push eax</span><br><span class="line">pop eax</span><br><span class="line">push ebx</span><br><span class="line">pop ebx</span><br></pre></td></tr></table></figure></div>
-
-<p>这类不改变状态，通常可以 NOP 掉：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">90 90 90 90</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>实战流程</strong></p>
-<ul>
-<li>先找程序真实入口和关键函数，不急着全局清花。</li>
-<li>动态调试记录真实执行过的基本块。</li>
-<li>对没执行的混淆块先标记为 fake。</li>
-<li>对影响反编译的跳转、栈操作、错位字节优先 patch。</li>
-<li>每 patch 一处就重新分析函数，确认伪代码变清晰。</li>
-<li>如果是壳&#x2F;自修改，优先脱壳或 dump，不要硬改静态假代码。</li>
-</ul>
-<p><strong>常用工具</strong></p>
-<ul>
-<li><code>IDA Pro</code>：Patch Program、Undefine、Make Code、Edit Function。</li>
-<li><code>Ghidra</code>：Clear Code Bytes、Disassemble、Patch Instruction。</li>
-<li><code>x64dbg</code>：动态单步、Patch、Assemble、Dump。</li>
-<li><code>010 Editor</code> &#x2F; <code>HxD</code>：十六进制直接改字节。</li>
-<li><code>Capstone/Keystone</code>：写脚本反汇编和重汇编。</li>
-</ul>
-<p>简单总结：<br><strong>能确认不执行的，删；确认无影响的，NOP；确认恒定分支的，改跳转；遇到自修改的，先动态 dump。</strong></p>
-<h1 id="如何学其他花"><a href="#如何学其他花" class="headerlink" title="如何学其他花"></a>如何学其他花</h1><p>可以按“<strong>先会识别 → 再会验证 → 最后会 patch</strong>”来学。你已经会 <code>jmp</code> 花指令，下一步建议从最常见、最容易上手的几类开始。</p>
-<p><strong>学习路线</strong></p>
-<ul>
-<li><strong>垃圾指令花</strong>：学 <code>nop</code>、<code>mov reg,reg</code>、<code>xchg reg,reg</code>、<code>push/pop</code> 成对、<code>add/sub</code> 抵消。</li>
-<li><strong>条件跳转花</strong>：学 <code>jz/jnz/ja/jb</code> 配合恒定条件，比如 <code>xor eax,eax; test eax,eax; jnz fake</code>。</li>
-<li><strong>栈平衡花</strong>：学 <code>push/pop</code>、<code>call/ret</code>、<code>add esp</code>、<code>sub esp</code> 对反编译的影响。</li>
-<li><strong>错位反汇编花</strong>：学 <code>db</code> 垃圾字节、跳过中间字节、IDA 反汇编错位。</li>
-<li><strong>异常花&#x2F;反调试花</strong>：后面再学，比如 <code>int3</code>、SEH、非法指令。</li>
-<li><strong>自修改&#x2F;壳&#x2F;VM 花</strong>：最后学，难度最高。</li>
-</ul>
-<p><strong>推荐顺序</strong></p>
-<ol>
-<li>垃圾指令</li>
-<li>条件跳转</li>
-<li>栈平衡</li>
-<li>错位反汇编</li>
-<li>call&#x2F;ret 花</li>
-<li>异常花</li>
-<li>自修改代码</li>
-</ol>
-<p>你可以先练这四种，因为 CTF 里最常见。</p>
-<hr>
-<p><strong>1. 垃圾指令花</strong></p>
-<p>特点：执行了，但不改变最终结果。</p>
-<p>例子：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mov eax, eax</span><br><span class="line">xchg ebx, ebx</span><br><span class="line">push ecx</span><br><span class="line">pop ecx</span><br><span class="line">add edx, 5</span><br><span class="line">sub edx, 5</span><br></pre></td></tr></table></figure></div>
-
-<p>这些指令执行前后寄存器值不变，常用来干扰阅读。</p>
-<p>怎么判断：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mov eax, eax        ; eax 没变</span><br><span class="line">push ecx</span><br><span class="line">pop ecx             ; ecx 没变，esp 也恢复</span><br><span class="line">add edx, 5</span><br><span class="line">sub edx, 5          ; edx 没变</span><br></pre></td></tr></table></figure></div>
-
-<p>怎么改：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nop</span><br><span class="line">nop</span><br><span class="line">nop</span><br></pre></td></tr></table></figure></div>
-
-<p>或者直接在脑子里忽略。</p>
-<hr>
-<p><strong>2. 条件跳转花</strong></p>
-<p>特点：看起来有分支，但其实条件固定。</p>
-<p>例子：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax</span><br><span class="line">test eax, eax</span><br><span class="line">jnz fake</span><br></pre></td></tr></table></figure></div>
-
-<p>分析：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax</span><br></pre></td></tr></table></figure></div>
-
-<p>执行后：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eax = 0</span><br></pre></td></tr></table></figure></div>
-
-<p>然后：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test eax, eax</span><br></pre></td></tr></table></figure></div>
-
-<p>因为 <code>eax</code> 是 <code>0</code>，所以 <code>ZF = 1</code>。</p>
-<p><code>jnz</code> 的意思是 ZF&#x3D;0 才跳，所以这里永远不跳。</p>
-<p>所以：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jnz fake</span><br></pre></td></tr></table></figure></div>
-
-<p>可以当作不存在。</p>
-<p>另一种：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax</span><br><span class="line">test eax, eax</span><br><span class="line">jz real</span><br></pre></td></tr></table></figure></div>
-
-<p>这里 <code>jz real</code> 永远跳。</p>
-<p>怎么改：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jz real</span><br></pre></td></tr></table></figure></div>
-
-<p>可以改成：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmp real</span><br></pre></td></tr></table></figure></div>
-
-<p>如果是永远不跳的条件跳转，可以 NOP 掉。</p>
-<hr>
-<p><strong>3. 栈平衡花</strong></p>
-<p>特点：用 <code>push/pop</code>、<code>call/ret</code> 干扰 IDA 判断函数和变量。</p>
-<p>简单例子：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push eax</span><br><span class="line">push ebx</span><br><span class="line">pop ebx</span><br><span class="line">pop eax</span><br></pre></td></tr></table></figure></div>
-
-<p>执行前后：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eax 没变</span><br><span class="line">ebx 没变</span><br><span class="line">esp 没变</span><br></pre></td></tr></table></figure></div>
-
-<p>这种可以忽略或 NOP。</p>
-<p>稍微复杂一点：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push offset loc_next</span><br><span class="line">ret</span><br><span class="line"></span><br><span class="line">loc_next:</span><br><span class="line">mov eax, 1</span><br></pre></td></tr></table></figure></div>
-
-<p>这其实等价于：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmp loc_next</span><br></pre></td></tr></table></figure></div>
-
-<p>因为：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push offset loc_next</span><br><span class="line">ret</span><br></pre></td></tr></table></figure></div>
-
-<p><code>ret</code> 会从栈顶取地址跳过去。</p>
-<p>所以可以改成：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmp loc_next</span><br></pre></td></tr></table></figure></div>
-
-<p>常见形式：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">call loc_next</span><br><span class="line">db 0E8h, 90h, 90h</span><br><span class="line"></span><br><span class="line">loc_next:</span><br><span class="line">pop eax</span><br></pre></td></tr></table></figure></div>
-
-<p>这种常用于拿当前地址，也可能用于制造错位。</p>
-<hr>
-<p><strong>4. 错位反汇编花</strong></p>
-<p>特点：程序真正执行时跳过一些字节，但反汇编器把这些字节当成代码。</p>
-<p>例子：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jmp short real</span><br><span class="line">db 0E8h, 11h, 22h, 33h, 44h</span><br><span class="line"></span><br><span class="line">real:</span><br><span class="line">mov eax, 1234h</span><br></pre></td></tr></table></figure></div>
-
-<p>真实执行：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmp short real</span><br></pre></td></tr></table></figure></div>
-
-<p>中间的 <code>db</code> 不执行。</p>
-<p>但 IDA 可能把：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E8 11 22 33 44</span><br></pre></td></tr></table></figure></div>
-
-<p>识别成一个假的 <code>call</code>，导致后面反汇编错乱。</p>
-<p>怎么处理：</p>
-<ul>
-<li>在 IDA 里选中错误指令按 <code>U</code> 取消定义。</li>
-<li>到真实地址按 <code>C</code> 重新反汇编。</li>
-<li>如果需要 patch，把垃圾字节改成 <code>90</code>。</li>
-</ul>
-<hr>
-<p><strong>5. call&#x2F;ret 花</strong></p>
-<p>这个也很常见。</p>
-<p>例子：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">call fake_ret</span><br><span class="line"></span><br><span class="line">fake_ret:</span><br><span class="line">add dword ptr [esp], 5</span><br><span class="line">ret</span><br></pre></td></tr></table></figure></div>
-
-<p>解释：</p>
-<p><code>call fake_ret</code> 会把下一条指令地址压栈，然后跳到 <code>fake_ret</code>。</p>
-<p>在 <code>fake_ret</code> 里：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add dword ptr [esp], 5</span><br><span class="line">ret</span><br></pre></td></tr></table></figure></div>
-
-<p>它把返回地址加 5，然后 <code>ret</code>，相当于跳过后面 5 个字节。</p>
-<p>等价于：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmp 某个真实位置</span><br></pre></td></tr></table></figure></div>
-
-<p>怎么学：</p>
-<p>你要熟悉：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">call = push 下一条地址 + jmp 目标</span><br><span class="line">ret = pop eip/rip</span><br></pre></td></tr></table></figure></div>
-
-<p>只要掌握这个，很多 call&#x2F;ret 花都能看懂。</p>
-<hr>
-<p><strong>练习方法</strong></p>
-<p>你可以自己写小样本练。</p>
-<p>例如 C 代码里嵌汇编，或者直接写 asm：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax</span><br><span class="line">test eax, eax</span><br><span class="line">jnz fake</span><br><span class="line">mov eax, 12345678h</span><br><span class="line">jmp end</span><br><span class="line"></span><br><span class="line">fake:</span><br><span class="line">mov eax, 0</span><br><span class="line"></span><br><span class="line">end:</span><br><span class="line">ret</span><br></pre></td></tr></table></figure></div>
-
-<p>然后用：</p>
-<ul>
-<li><code>IDA</code></li>
-<li><code>Ghidra</code></li>
-<li><code>x64dbg</code></li>
-</ul>
-<p>观察：</p>
-<ul>
-<li>静态反汇编长什么样</li>
-<li>动态执行到底走哪条路</li>
-<li>patch 后伪代码有没有变清楚</li>
-</ul>
-<hr>
-<p><strong>判断花指令的核心方法</strong></p>
-<p>记住三件事：</p>
-<p><strong>第一，看是否影响结果</strong></p>
-<p>例如：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add eax, 1</span><br><span class="line">sub eax, 1</span><br></pre></td></tr></table></figure></div>
-
-<p>如果中间没有使用 <code>eax</code>，那就是无效操作。</p>
-<p><strong>第二，看跳转条件是否固定</strong></p>
-<p>例如：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xor eax,eax</span><br><span class="line">test eax,eax</span><br><span class="line">jz xxx</span><br></pre></td></tr></table></figure></div>
-
-<p>这是固定跳。</p>
-<p><strong>第三，看真实执行流</strong></p>
-<p>如果静态看不懂，就动态调试：</p>
-<ul>
-<li>下断点</li>
-<li>单步</li>
-<li>看 <code>EIP/RIP</code></li>
-<li>看寄存器</li>
-<li>看栈</li>
-<li>看标志位</li>
-</ul>
-<p>真实执行到的才重要。</p>
-<hr>
-<p><strong>你现在最该补的基础</strong></p>
-<p>如果你想快速提升，建议补这几个点：</p>
-<ul>
-<li><code>ZF/CF/SF/OF</code> 标志位</li>
-<li><code>cmp/test</code> 和 <code>jcc</code> 的关系</li>
-<li><code>push/pop/call/ret</code> 对栈的影响</li>
-<li>IDA 的 <code>U</code>、<code>C</code>、<code>P</code>、<code>Patch</code></li>
-<li>x64dbg 单步和查看寄存器&#x2F;栈</li>
-</ul>
-<p>尤其是标志位和栈，学会后花指令会简单很多。</p>
-<hr>
-<p><strong>小练习</strong></p>
-<p>你可以判断下面哪个分支会执行：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax</span><br><span class="line">inc eax</span><br><span class="line">cmp eax, 1</span><br><span class="line">jnz fake</span><br><span class="line">mov ebx, 1234h</span><br><span class="line">jmp end</span><br><span class="line"></span><br><span class="line">fake:</span><br><span class="line">mov ebx, 0</span><br><span class="line"></span><br><span class="line">end:</span><br><span class="line">ret</span><br></pre></td></tr></table></figure></div>
-
-<p>分析：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xor eax,eax   ; eax = 0</span><br><span class="line">inc eax       ; eax = 1</span><br><span class="line">cmp eax,1     ; 相等，ZF = 1</span><br><span class="line">jnz fake      ; ZF=0 才跳，所以不跳</span><br></pre></td></tr></table></figure></div>
-
-<p>所以执行：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov ebx, 1234h</span><br></pre></td></tr></table></figure></div>
-
-<p><code>fake</code> 是假分支。</p>
-<hr>
-<p>建议你下一步专门练 <strong>条件跳转花</strong>。<br>因为它和 <code>jmp</code> 最接近，只是多了标志位判断。学会 <code>cmp/test + jcc</code> 后，CTF 里一大半基础花指令都能看出来。</p>
-
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><h4 id="loop循环"><a href="#loop循环" class="headerlink" title="loop循环"></a>loop循环</h4><p>无限循环，通过if条件等进行判断后再break，从而退出。</p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">loop</span>&#123;</span><br><span class="line">	循环体;</span><br><span class="line">	<span class="keyword">if</span> 条件+逻辑运算符&#123;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> 条件+逻辑运算符&#123;</span><br><span class="line">	函数体;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="variable">a</span> <span class="keyword">in</span> <span class="number">1</span>..<span class="number">4</span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 		</div>
 
 		
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 花指令之理论记录</li>
+        <li><strong>Title:</strong> Rust语言基础篇</li>
         <li><strong>Author:</strong> インキゴ</li>
         <li><strong>Created at
-                :</strong> 2026-05-19 13:15:00</li>
+                :</strong> 2026-05-16 15:55:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-05-25 14:50:55
+                    :</strong> 2026-05-31 19:44:57
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2026/05/19/C.网安学习/Rev知识点/花指令ai/
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/05/16/C.语言/【缺】Rust 学习/
         </li>
         <li>
             <strong>
@@ -681,6 +433,10 @@
 				<a href="/tags/%E5%AD%A6%E4%B9%A0/">#学习</a>&nbsp;
 			</li>
 			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Rust/">#Rust</a>&nbsp;
+			</li>
+			
 		</ul>
 		
 
@@ -690,12 +446,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2026/05/21/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Pwn%E7%9F%A5%E8%AF%86%E7%82%B9/pwn%E5%AD%A6%E4%B9%A0/">
+				<a class="prev" rel="prev" href="/2026/05/17/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/%E8%AF%AD%E8%A8%80/%E3%80%90%E6%94%B9%E3%80%91%E3%80%90%E7%BC%BA%E3%80%91ida%E4%B9%8BRust/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">pwn学习记录</span>
+						<span class="post-nav-title-item truncate max-w-48">ida之Rust</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -703,9 +459,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2026/05/17/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/ida%E4%B9%8BGolang/">
+				<a class="next" rel="next" href="/2026/05/16/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/%E3%80%90%E7%BC%BA%E3%80%91ida/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">ida之Golang</span>
+						<span class="post-nav-title-item truncate max-w-48">ida逆向一些记录</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -788,8 +544,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">花指令之理论记录</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AD%A6%E5%85%B6%E4%BB%96%E8%8A%B1"><span class="nav-text">如何学其他花</span></a></li></ol>
+		<div class="page-title">Rust语言基础篇</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="nav-text">类型定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-text">基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-text">if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-text">循环</span></a></li></ol></li></ol>
 
 	</div>
 </div>
@@ -817,7 +573,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        21 posts in total
+                        22 posts in total
                     </span>
                     
                 </p>

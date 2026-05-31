@@ -78,7 +78,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/05/25/admin/"/>
+    <link rel="canonical" href="http://example.com/2026/05/31/c.网安学习/rev知识点/算法/【改】s-box + xor校验 ai/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -87,16 +87,15 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网站测试">
-<meta property="og:url" content="http://example.com/2025/05/25/admin/index.html">
+<meta property="og:title" content="御网杯REV题:S-box + XOR校验">
+<meta property="og:url" content="http://example.com/2026/05/31/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/%E7%AE%97%E6%B3%95/%E3%80%90%E6%94%B9%E3%80%91S-box%20+%20XOR%E6%A0%A1%E9%AA%8C%20ai/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-05-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-31T10:32:03.322Z">
+<meta property="article:published_time" content="2026-05-31T11:24:34.000Z">
+<meta property="article:modified_time" content="2026-05-31T11:29:04.352Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="测试">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -110,7 +109,7 @@
     
     <title>
         
-            网站测试 | インキゴのBLOG
+            御网杯REV题:S-box + XOR校验 | インキゴのBLOG
         
     </title>
 
@@ -282,7 +281,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -305,7 +304,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">网站测试</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">御网杯REV题:S-box + XOR校验</h1>
 			</div>
 			
 		</div>
@@ -326,31 +325,20 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-05-25</span>
-        <span class="mobile">2025-05-25</span>
+        <span class="desktop">2026-05-31 19:24:34</span>
+        <span class="mobile">2026-05-31 19:24:34</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-05-31 18:32:03</span>
-            <span class="mobile">2026-05-31 18:32:03</span>
+            <span class="desktop">2026-05-31 19:29:04</span>
+            <span class="mobile">2026-05-31 19:29:04</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
-    
-        <span class="article-tags article-meta-item">
-            <i class="fa-regular fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/%E6%B5%8B%E8%AF%95/">测试</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
     
 
     
@@ -372,15 +360,27 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<ul>
-<li><input checked="" disabled="" type="checkbox"> 测试时间</li>
-<li><input checked="" disabled="" type="checkbox"> 测试置顶优先级</li>
-<li><input checked="" disabled="" type="checkbox"> 测试tag</li>
-<li><input disabled="" type="checkbox"> 测试字体</li>
-<li><input disabled="" type="checkbox"> 测试图标</li>
-<li><input disabled="" type="checkbox"> 测试文章内部插入图片</li>
-<li><input disabled="" type="checkbox"> tag页</li>
+			<h1 id="rerere"><a href="#rerere" class="headerlink" title="rerere"></a>rerere</h1><p>拖入ida 通过Shift+f12通过字符串找到主函数<br>![[ywb-rerere1.png]]</p>
+<p>exp如下 得到flag<br>![[ywb-rerere2.png]]</p>
+<hr>
+<p>S-box + XOR校验</p>
+<ul>
+<li><strong>Key</strong>（循环使用）：byte_140004048（8 字节）</li>
+<li><strong>S-box</strong>（查找表）：byte_140004060（256 字节）</li>
+<li><strong>目标值</strong>（密文）：byte_140004020（38 字节）</li>
 </ul>
+<p>因为 S-box 是<strong>置换表</strong>（permutation），我们可以构造它的<strong>逆表</strong>（inverse S-box）。</p>
+<p>对于每一个位置 i：</p>
+<ol>
+<li>已知 target[i]</li>
+<li>找到 x，使得 S-box[x] &#x3D;&#x3D; target[i]（即 x &#x3D; inverse_sbox[target[i]]）</li>
+<li>则 input[i] &#x3D; x ^ key[i % 8]</li>
+</ol>
+<p>遍历 38 个位置即可得到完整 flag。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 逆表</span></span><br><span class="line">sbox = [<span class="number">0xc2</span>, <span class="number">0x23</span>, <span class="number">0x97</span>, <span class="number">0x49</span>, <span class="number">0x83</span>, <span class="number">0xf6</span>, <span class="number">0xd3</span>, <span class="number">0xa7</span>, <span class="number">0xeb</span>, <span class="number">0xbf</span>, <span class="number">0x78</span>, <span class="number">0xc3</span>, <span class="number">0x29</span>, <span class="number">0x56</span>, <span class="number">0xd2</span>, <span class="number">0x1a</span>, <span class="number">0x13</span>, <span class="number">0xbc</span>, <span class="number">0x21</span>, <span class="number">0x6a</span>, <span class="number">0x37</span>, <span class="number">0x8e</span>, <span class="number">0x5f</span>, <span class="number">0x0c</span>, <span class="number">0xb4</span>, <span class="number">0x46</span>, <span class="number">0xde</span>, <span class="number">0xe4</span>, <span class="number">0x6c</span>, <span class="number">0xa2</span>, <span class="number">0x66</span>, <span class="number">0x30</span>, <span class="number">0x0f</span>, <span class="number">0xa4</span>, <span class="number">0xbb</span>, <span class="number">0x8c</span>, <span class="number">0x09</span>, <span class="number">0x4b</span>, <span class="number">0x3d</span>, <span class="number">0x32</span>, <span class="number">0x42</span>, <span class="number">0x55</span>, <span class="number">0x2d</span>, <span class="number">0x4f</span>, <span class="number">0xf9</span>, <span class="number">0x77</span>, <span class="number">0x1b</span>, <span class="number">0x74</span>, <span class="number">0x1f</span>, <span class="number">0x71</span>, <span class="number">0x7b</span>, <span class="number">0x9d</span>, <span class="number">0x73</span>, <span class="number">0xc4</span>, <span class="number">0xab</span>, <span class="number">0xd0</span>, <span class="number">0xf3</span>, <span class="number">0xc1</span>, <span class="number">0x88</span>, <span class="number">0x07</span>, <span class="number">0xdc</span>, <span class="number">0xce</span>, <span class="number">0xef</span>, <span class="number">0xc0</span>, <span class="number">0x72</span>, <span class="number">0x4a</span>, <span class="number">0x27</span>, <span class="number">0x81</span>, <span class="number">0x9b</span>, <span class="number">0xee</span>, <span class="number">0xc7</span>, <span class="number">0x28</span>, <span class="number">0x26</span>, <span class="number">0x5a</span>, <span class="number">0x94</span>, <span class="number">0x54</span>, <span class="number">0x70</span>, <span class="number">0xd1</span>, <span class="number">0xe9</span>, <span class="number">0xc8</span>, <span class="number">0x98</span>, <span class="number">0x36</span>, <span class="number">0x91</span>, <span class="number">0x41</span>, <span class="number">0xb8</span>, <span class="number">0x3a</span>, <span class="number">0x79</span>, <span class="number">0x0a</span>, <span class="number">0x08</span>, <span class="number">0xe5</span>, <span class="number">0xaf</span>, <span class="number">0x80</span>, <span class="number">0x24</span>, <span class="number">0xae</span>, <span class="number">0x00</span>, <span class="number">0x19</span>, <span class="number">0xcc</span>, <span class="number">0x7a</span>, <span class="number">0xf7</span>, <span class="number">0x51</span>, <span class="number">0x7d</span>, <span class="number">0x69</span>, <span class="number">0xec</span>, <span class="number">0x03</span>, <span class="number">0x65</span>, <span class="number">0x25</span>, <span class="number">0x1c</span>, <span class="number">0x01</span>, <span class="number">0xf5</span>, <span class="number">0xe6</span>, <span class="number">0xbd</span>, <span class="number">0xd9</span>, <span class="number">0x59</span>, <span class="number">0xfe</span>, <span class="number">0x92</span>, <span class="number">0xb0</span>, <span class="number">0x10</span>, <span class="number">0x6f</span>, <span class="number">0xf0</span>, <span class="number">0xe3</span>, <span class="number">0x9f</span>, <span class="number">0xad</span>, <span class="number">0x84</span>, <span class="number">0xf4</span>, <span class="number">0xa5</span>, <span class="number">0x33</span>, <span class="number">0x35</span>, <span class="number">0x48</span>, <span class="number">0x53</span>, <span class="number">0xb1</span>, <span class="number">0xe0</span>, <span class="number">0xd8</span>, <span class="number">0x05</span>, <span class="number">0x38</span>, <span class="number">0x18</span>, <span class="number">0x68</span>, <span class="number">0xa9</span>, <span class="number">0x14</span>, <span class="number">0xc6</span>, <span class="number">0x3f</span>, <span class="number">0x61</span>, <span class="number">0x8a</span>, <span class="number">0x31</span>, <span class="number">0x3b</span>, <span class="number">0xba</span>, <span class="number">0x2b</span>, <span class="number">0x4e</span>, <span class="number">0xe2</span>, <span class="number">0x57</span>, <span class="number">0x9a</span>, <span class="number">0xf1</span>, <span class="number">0xea</span>, <span class="number">0x64</span>, <span class="number">0x7e</span>, <span class="number">0xa0</span>, <span class="number">0x93</span>, <span class="number">0xb6</span>, <span class="number">0xda</span>, <span class="number">0x60</span>, <span class="number">0x2e</span>, <span class="number">0x1d</span>, <span class="number">0x5b</span>, <span class="number">0x82</span>, <span class="number">0x34</span>, <span class="number">0x6d</span>, <span class="number">0xfc</span>, <span class="number">0xcf</span>, <span class="number">0x7f</span>, <span class="number">0xe7</span>, <span class="number">0x96</span>, <span class="number">0x67</span>, <span class="number">0x43</span>, <span class="number">0x06</span>, <span class="number">0x44</span>, <span class="number">0xc9</span>, <span class="number">0x4c</span>, <span class="number">0x40</span>, <span class="number">0xdb</span>, <span class="number">0xfd</span>, <span class="number">0x4d</span>, <span class="number">0xb5</span>, <span class="number">0xed</span>, <span class="number">0x39</span>, <span class="number">0x2c</span>, <span class="number">0xb3</span>, <span class="number">0x17</span>, <span class="number">0x9e</span>, <span class="number">0xcd</span>, <span class="number">0xfa</span>, <span class="number">0x6b</span>, <span class="number">0xca</span>, <span class="number">0x87</span>, <span class="number">0x8f</span>, <span class="number">0x9c</span>, <span class="number">0x89</span>, <span class="number">0x0e</span>, <span class="number">0x63</span>, <span class="number">0x45</span>, <span class="number">0x86</span>, <span class="number">0xaa</span>, <span class="number">0x5e</span>, <span class="number">0x95</span>, <span class="number">0x16</span>, <span class="number">0xc5</span>, <span class="number">0xd5</span>, <span class="number">0x2f</span>, <span class="number">0xa1</span>, <span class="number">0xf8</span>, <span class="number">0x99</span>, <span class="number">0xff</span>, <span class="number">0x3c</span>, <span class="number">0x0d</span>, <span class="number">0x3e</span>, <span class="number">0xd4</span>, <span class="number">0x04</span>, <span class="number">0x76</span>, <span class="number">0xd7</span>, <span class="number">0x47</span>, <span class="number">0x20</span>, <span class="number">0x8d</span>, <span class="number">0xdf</span>, <span class="number">0x5c</span>, <span class="number">0x7c</span>, <span class="number">0xa3</span>, <span class="number">0x1e</span>, <span class="number">0x8b</span>, <span class="number">0x15</span>, <span class="number">0xb9</span>, <span class="number">0xa8</span>, <span class="number">0xcb</span>, <span class="number">0x22</span>, <span class="number">0xa6</span>, <span class="number">0x52</span>, <span class="number">0xd6</span>, <span class="number">0xfb</span>, <span class="number">0x5d</span>, <span class="number">0xdd</span>, <span class="number">0xb2</span>, <span class="number">0x6e</span>, <span class="number">0xe8</span>, <span class="number">0xf2</span>, <span class="number">0xe1</span>, <span class="number">0x2a</span>, <span class="number">0x58</span>, <span class="number">0x62</span>, <span class="number">0x12</span>, <span class="number">0x11</span>, <span class="number">0x50</span>, <span class="number">0x75</span>, <span class="number">0xb7</span>, <span class="number">0xac</span>, <span class="number">0x90</span>, <span class="number">0x0b</span>, <span class="number">0x85</span>, <span class="number">0x02</span>, <span class="number">0xbe</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(sbox))</span><br><span class="line">inv = [<span class="number">0</span>]*<span class="number">256</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">    inv[sbox[i]] = i</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Inverse created&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># SBOX from user</span></span><br><span class="line">sbox_hex = <span class="string">&quot;0xc2, 0x23, 0x97, 0x49, 0x83, 0xf6, 0xd3, 0xa7, 0xeb, 0xbf, 0x78, 0xc3, 0x29, 0x56, 0xd2, 0x1a, 0x13, 0xbc, 0x21, 0x6a, 0x37, 0x8e, 0x5f, 0x0c, 0xb4, 0x46, 0xde, 0xe4, 0x6c, 0xa2, 0x66, 0x30, 0x0f, 0xa4, 0xbb, 0x8c, 0x09, 0x4b, 0x3d, 0x32, 0x42, 0x55, 0x2d, 0x4f, 0xf9, 0x77, 0x1b, 0x74, 0x1f, 0x71, 0x7b, 0x9d, 0x73, 0xc4, 0xab, 0xd0, 0xf3, 0xc1, 0x88, 0x07, 0xdc, 0xce, 0xef, 0xc0, 0x72, 0x4a, 0x27, 0x81, 0x9b, 0xee, 0xc7, 0x28, 0x26, 0x5a, 0x94, 0x54, 0x70, 0xd1, 0xe9, 0xc8, 0x98, 0x36, 0x91, 0x41, 0xb8, 0x3a, 0x79, 0x0a, 0x08, 0xe5, 0xaf, 0x80, 0x24, 0xae, 0x00, 0x19, 0xcc, 0x7a, 0xf7, 0x51, 0x7d, 0x69, 0xec, 0x03, 0x65, 0x25, 0x1c, 0x01, 0xf5, 0xe6, 0xbd, 0xd9, 0x59, 0xfe, 0x92, 0xb0, 0x10, 0x6f, 0xf0, 0xe3, 0x9f, 0xad, 0x84, 0xf4, 0xa5, 0x33, 0x35, 0x48, 0x53, 0xb1, 0xe0, 0xd8, 0x05, 0x38, 0x18, 0x68, 0xa9, 0x14, 0xc6, 0x3f, 0x61, 0x8a, 0x31, 0x3b, 0xba, 0x2b, 0x4e, 0xe2, 0x57, 0x9a, 0xf1, 0xea, 0x64, 0x7e, 0xa0, 0x93, 0xb6, 0xda, 0x60, 0x2e, 0x1d, 0x5b, 0x82, 0x34, 0x6d, 0xfc, 0xcf, 0x7f, 0xe7, 0x96, 0x67, 0x43, 0x06, 0x44, 0xc9, 0x4c, 0x40, 0xdb, 0xfd, 0x4d, 0xb5, 0xed, 0x39, 0x2c, 0xb3, 0x17, 0x9e, 0xcd, 0xfa, 0x6b, 0xca, 0x87, 0x8f, 0x9c, 0x89, 0x0e, 0x63, 0x45, 0x86, 0xaa, 0x5e, 0x95, 0x16, 0xc5, 0xd5, 0x2f, 0xa1, 0xf8, 0x99, 0xff, 0x3c, 0x0d, 0x3e, 0xd4, 0x04, 0x76, 0xd7, 0x47, 0x20, 0x8d, 0xdf, 0x5c, 0x7c, 0xa3, 0x1e, 0x8b, 0x15, 0xb9, 0xa8, 0xcb, 0x22, 0xa6, 0x52, 0xd6, 0xfb, 0x5d, 0xdd, 0xb2, 0x6e, 0xe8, 0xf2, 0xe1, 0x2a, 0x58, 0x62, 0x12, 0x11, 0x50, 0x75, 0xb7, 0xac, 0x90, 0x0b, 0x85, 0x02, 0xbe&quot;</span>.split(<span class="string">&quot;, &quot;</span>)</span><br><span class="line">sbox = [<span class="built_in">int</span>(x,<span class="number">16</span>) <span class="keyword">for</span> x <span class="keyword">in</span> sbox_hex]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(sbox))</span><br><span class="line"></span><br><span class="line">inv_sbox = [<span class="number">0</span>]*<span class="number">256</span></span><br><span class="line"><span class="keyword">for</span> i, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(sbox):</span><br><span class="line">    inv_sbox[val] = i</span><br><span class="line"></span><br><span class="line"><span class="comment"># Key from 140004048</span></span><br><span class="line">key_hex = <span class="string">&quot;0xb9, 0xcd, 0xce, 0x30, 0xb8, 0x61, 0x4e, 0xaa&quot;</span>  <span class="comment"># first 8 bytes</span></span><br><span class="line">key = [<span class="built_in">int</span>(x,<span class="number">16</span>) <span class="keyword">for</span> x <span class="keyword">in</span> key_hex.split(<span class="string">&quot;, &quot;</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Target from 140004020 , 0x28 = 40 bytes, but we need 38</span></span><br><span class="line">target_hex = <span class="string">&quot;0xa3, 0x5b, 0x4c, 0xa, 0xe, 0x98, 0x4f, 0xf8, 0x14, 0x90, 0xac, 0xf6, 0x14, 0x41, 0x9f, 0x95, 0x5c, 0x2, 0x50, 0x97, 0x61, 0xc2, 0x9f, 0x4e, 0x61, 0x2, 0x11, 0x3a, 0x20, 0x97, 0x42, 0xc5, 0x8a, 0x96, 0xac, 0x83, 0x3b, 0x6c&quot;</span></span><br><span class="line">target = [<span class="built_in">int</span>(x,<span class="number">16</span>) <span class="keyword">for</span> x <span class="keyword">in</span> target_hex.split(<span class="string">&quot;, &quot;</span>)]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Key:&quot;</span>, [<span class="built_in">hex</span>(k) <span class="keyword">for</span> k <span class="keyword">in</span> key])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Target len:&quot;</span>, <span class="built_in">len</span>(target))</span><br><span class="line"></span><br><span class="line">password = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">38</span>):</span><br><span class="line">    t = target[i]</span><br><span class="line">    x = inv_sbox[t]</span><br><span class="line">    p = x ^ key[i % <span class="number">8</span>]</span><br><span class="line">    password.append(p)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.join(<span class="built_in">chr</span>(p) <span class="keyword">for</span> p <span class="keyword">in</span> password))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hex:&quot;</span>, <span class="string">&quot; &quot;</span>.join(<span class="built_in">hex</span>(p) <span class="keyword">for</span> p <span class="keyword">in</span> password))</span><br></pre></td></tr></table></figure></div>
 
 		</div>
 
@@ -388,18 +388,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> 网站测试</li>
+        <li><strong>Title:</strong> 御网杯REV题:S-box + XOR校验</li>
         <li><strong>Author:</strong> インキゴ</li>
         <li><strong>Created at
-                :</strong> 2025-05-25 00:00:00</li>
+                :</strong> 2026-05-31 19:24:34</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-05-31 18:32:03
+                    :</strong> 2026-05-31 19:29:04
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2025/05/25/admin/
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/05/31/C.网安学习/Rev知识点/算法/【改】S-box + XOR校验 ai/
         </li>
         <li>
             <strong>
@@ -418,32 +418,24 @@
 		
 
 		
-		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
-			
-			<li class="tag-item mx-0.5">
-				<a href="/tags/%E6%B5%8B%E8%AF%95/">#测试</a>&nbsp;
-			</li>
-			
-		</ul>
-		
 
 		
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2026/01/01/%E9%9A%8F%E7%AC%94%E8%AE%B0%E5%BD%95/Beg1n/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/05/29/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/%E7%AE%97%E6%B3%95/%E3%80%90%E7%BC%BA%E3%80%91TEA%E5%8A%A0%E5%AF%86/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">2026伊始篇</span>
-						<span class="post-nav-item">Prev posts</span>
+						<span class="post-nav-title-item truncate max-w-48"></span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
 					</span>
 				</a>
 			</div>
-			
 			
 		</div>
 		
@@ -519,8 +511,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">网站测试</div>
-		
+		<div class="page-title">御网杯REV题:S-box + XOR校验</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rerere"><span class="nav-text">rerere</span></a></li></ol>
 
 	</div>
 </div>
@@ -548,7 +540,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        21 posts in total
+                        22 posts in total
                     </span>
                     
                 </p>

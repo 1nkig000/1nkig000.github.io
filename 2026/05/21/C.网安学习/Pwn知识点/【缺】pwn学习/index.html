@@ -78,7 +78,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2026/05/28/未命名/"/>
+    <link rel="canonical" href="http://example.com/2026/05/21/c.网安学习/pwn知识点/【缺】pwn学习/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -87,15 +87,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2026/05/28/%E6%9C%AA%E5%91%BD%E5%90%8D/index.html">
+<meta property="og:title" content="pwn学习记录">
+<meta property="og:url" content="http://example.com/2026/05/21/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Pwn%E7%9F%A5%E8%AF%86%E7%82%B9/%E3%80%90%E7%BC%BA%E3%80%91pwn%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2026-05-28T07:27:02.579Z">
-<meta property="article:modified_time" content="2026-05-28T15:09:36.837Z">
+<meta property="article:published_time" content="2026-05-21T08:19:36.000Z">
+<meta property="article:modified_time" content="2026-05-25T06:44:53.733Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -109,7 +110,7 @@
     
     <title>
         
-            インキゴのBLOG - Gl4d 2 see U!
+            pwn学习记录 | インキゴのBLOG
         
     </title>
 
@@ -281,7 +282,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">22</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -304,7 +305,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">pwn学习记录</h1>
 			</div>
 			
 		</div>
@@ -325,20 +326,31 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2026-05-28 15:27:02</span>
-        <span class="mobile">2026-05-28 15:27:02</span>
+        <span class="desktop">2026-05-21 16:19:36</span>
+        <span class="mobile">2026-05-21 16:19:36</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-05-28 23:09:36</span>
-            <span class="mobile">2026-05-28 23:09:36</span>
+            <span class="desktop">2026-05-25 14:44:53</span>
+            <span class="mobile">2026-05-25 14:44:53</span>
             <span class="hover-info">Updated</span>
         </span>
     
 
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -360,23 +372,8 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h1 id="c语言"><a href="#c语言" class="headerlink" title="c语言"></a>c语言</h1><p>![[Pasted image 20260528152722.png]]![[Pasted image 20260528152802.png]]</p>
-<p>设原始字节数据为B&#x3D;[b0​,b1​,…,bn−1​]，每个字节 bi​ 的取值范围为 [0,255][0,255]。<br>将每个字节拆分为高 4 位和低 4 位：<br>bi&#x3D;16×hi+li<br>其中：</p>
-<ul>
-<li>hi&#x3D;⌊bi&#x2F;16⌋为高半字节</li>
-<li>li​&#x3D;bi​mod16 为低半字节</li>
-</ul>
-<h1 id="ADD"><a href="#ADD" class="headerlink" title="ADD"></a>ADD</h1><p><strong>Findcrypto</strong> 插件通过以下方式检测加密算法：</p>
-<ul>
-<li>扫描常量特征（如字符表、初始向量）</li>
-<li>匹配算法特定常数（如 Base64 的字符集哈希值）</li>
-<li>识别循环结构中的位运算模式<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://hello-ctf.com/hc-reverse/Images/findcrypto.png"
-                      alt="Findcrypto 插件识别结果"
-                ></li>
-</ul>
+			<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p><strong><code>/bin/sh</code></strong> 是 启动一个 shell 命令行环境<br>这样后就可以进行linux命令的使用</p>
+<p>因为只要程序执行了它：<br>攻击者就能执行系统命令。</p>
 
 		</div>
 
@@ -384,18 +381,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> </li>
+        <li><strong>Title:</strong> pwn学习记录</li>
         <li><strong>Author:</strong> インキゴ</li>
         <li><strong>Created at
-                :</strong> 2026-05-28 15:27:02</li>
+                :</strong> 2026-05-21 16:19:36</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2026-05-28 23:09:36
+                    :</strong> 2026-05-25 14:44:53
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2026/05/28/未命名/
+            <strong>Link:</strong> https://redefine.ohevan.com/2026/05/21/C.网安学习/Pwn知识点/【缺】pwn学习/
         </li>
         <li>
             <strong>
@@ -414,6 +411,14 @@
 		
 
 		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E5%AD%A6%E4%B9%A0/">#学习</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
 		
 
@@ -421,12 +426,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2026/05/29/TEA%E5%8A%A0%E5%AF%86/">
+				<a class="prev" rel="prev" href="/2026/05/21/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/kali-pwn%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48"></span>
+						<span class="post-nav-title-item truncate max-w-48">kali从零开始：整理教程版</span>
 						<span class="post-nav-item">Prev posts</span>
 					</span>
 				</a>
@@ -434,9 +439,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2026/05/27/x64dbg%E5%BF%AB%E6%8D%B7%E9%94%AE/">
+				<a class="next" rel="next" href="/2026/05/19/C.%E7%BD%91%E5%AE%89%E5%AD%A6%E4%B9%A0/Rev%E7%9F%A5%E8%AF%86%E7%82%B9/%E3%80%90%E6%94%B9%E3%80%91%E3%80%90%E7%BC%BA%E3%80%91%E8%8A%B1%E6%8C%87%E4%BB%A4ai/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48"></span>
+						<span class="post-nav-title-item truncate max-w-48">花指令之理论记录</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -519,8 +524,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title"></div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80"><span class="nav-text">c语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ADD"><span class="nav-text">ADD</span></a></li></ol>
+		<div class="page-title">pwn学习记录</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">基本原理</span></a></li></ol>
 
 	</div>
 </div>
@@ -548,7 +553,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        21 posts in total
+                        22 posts in total
                     </span>
                     
                 </p>
