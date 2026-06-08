@@ -22,6 +22,8 @@ import initFooterRuntime from "./tools/runtime.js";
 import initScrollTopBottom from "./tools/scrollTopBottom.js";
 import initImageViewer from "./tools/imageViewer.js";
 import { initTocToggle } from "./tools/tocToggle.js";
+import { initCalendar } from "./tools/sidebarCalendar.js";
+import { initCountdown } from "./tools/sidebarCountdown.js";
 import { initUtilsGlobals, initUtilsPage } from "./utils.js";
 import {
   onBeforeContentReplace,
@@ -192,6 +194,18 @@ const initPage = () => {
 
   safeRun("categoryList", () => {
     initCategoryList();
+  });
+
+  safeRun("calendar", () => {
+    if (theme.home?.sidebar?.calendar?.enable) {
+      initCalendar();
+    }
+  });
+
+  safeRun("countdown", () => {
+    if (theme.home?.sidebar?.countdown?.enable) {
+      initCountdown();
+    }
   });
 };
 
