@@ -228,62 +228,47 @@
   padding: 10px;
   border: 1px solid var(--border-color);
 }
-.redefine-countdown .redefine-countdown-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 6px;
-}
-.redefine-countdown .redefine-countdown-title i {
-  color: var(--primary-color);
-  font-size: 0.8rem;
-}
-.redefine-countdown .redefine-countdown-title span {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--second-text-color);
-}
-.redefine-countdown .redefine-countdown-target-date {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--third-text-color);
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-color);
-}
-.redefine-countdown .redefine-countdown-display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-}
-.redefine-countdown .redefine-countdown-display .redefine-countdown-item {
+.redefine-countdown .redefine-countdown-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: 28px;
+  gap: 6px;
 }
-.redefine-countdown .redefine-countdown-display .redefine-countdown-item .redefine-countdown-value {
-  display: block;
-  font-size: 1.05rem;
+.redefine-countdown .redefine-countdown-list .redefine-countdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+.redefine-countdown .redefine-countdown-list .redefine-countdown-item:not(:last-child) {
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
+}
+.redefine-countdown .redefine-countdown-list .redefine-countdown-item .redefine-countdown-item-title {
+  font-size: 0.75rem;
+  color: var(--second-text-color);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 55%;
+}
+.redefine-countdown .redefine-countdown-list .redefine-countdown-item .redefine-countdown-item-value {
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--primary-color);
   font-variant-numeric: tabular-nums;
-  line-height: 1;
+  white-space: nowrap;
 }
-.redefine-countdown .redefine-countdown-display .redefine-countdown-item .redefine-countdown-label {
-  display: block;
-  font-size: 0.6rem;
-  color: var(--third-text-color);
-  margin-top: 2px;
-  font-weight: 500;
+.redefine-countdown .redefine-countdown-list .redefine-countdown-item .redefine-countdown-item-value.redefine-countdown-expired {
+  color: var(--fourth-text-color);
+  font-weight: 400;
+  font-size: 0.7rem;
 }
-.redefine-countdown .redefine-countdown-display .redefine-countdown-divider {
-  font-size: 0.9rem;
-  font-weight: 700;
+.redefine-countdown .redefine-countdown-empty {
+  text-align: center;
   color: var(--third-text-color);
-  margin-top: -3px;
+  font-size: 0.75rem;
+  padding: 10px 0;
 }
 .home-sidebar-container {
   width: 240px;
