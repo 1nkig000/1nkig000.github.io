@@ -139,6 +139,152 @@
   --redefine-box-shadow-flat-hover: var(--shadow-color-2) 0px 1px 4px 0px, var(--shadow-color-1) 0px 0px 0px 1px, var(--shadow-color-1) 0px 0px 0px 1px inset;
   --mermaid-theme: $dark-mermaid-theme;
 }
+.redefine-calendar {
+  background-color: var(--second-background-color);
+  border-radius: 18px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+}
+.redefine-calendar .redefine-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.redefine-calendar .redefine-calendar-header .redefine-calendar-prev,
+.redefine-calendar .redefine-calendar-header .redefine-calendar-next {
+  background: transparent;
+  border: none;
+  color: var(--second-text-color);
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 4px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+}
+.redefine-calendar .redefine-calendar-header .redefine-calendar-prev:hover,
+.redefine-calendar .redefine-calendar-header .redefine-calendar-next:hover {
+  background-color: var(--third-background-color);
+  color: var(--primary-color);
+}
+.redefine-calendar .redefine-calendar-header .redefine-calendar-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--second-text-color);
+  min-width: 90px;
+  text-align: center;
+}
+.redefine-calendar .redefine-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-color);
+}
+.redefine-calendar .redefine-calendar-weekdays .redefine-calendar-weekday {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--third-text-color);
+  padding: 3px 0;
+  font-weight: 500;
+}
+.redefine-calendar .redefine-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+.redefine-calendar .redefine-calendar-days .redefine-calendar-day {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--second-text-color);
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.redefine-calendar .redefine-calendar-days .redefine-calendar-day:hover {
+  background-color: var(--third-background-color);
+  color: var(--primary-color);
+}
+.redefine-calendar .redefine-calendar-days .redefine-calendar-day.redefine-calendar-today {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: 700;
+}
+.redefine-calendar .redefine-calendar-days .redefine-calendar-day.redefine-calendar-other-month {
+  color: var(--fourth-text-color);
+  opacity: 0.5;
+}
+.redefine-countdown {
+  background-color: var(--second-background-color);
+  border-radius: 18px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+}
+.redefine-countdown .redefine-countdown-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.redefine-countdown .redefine-countdown-title i {
+  color: var(--primary-color);
+  font-size: 0.8rem;
+}
+.redefine-countdown .redefine-countdown-title span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--second-text-color);
+}
+.redefine-countdown .redefine-countdown-target-date {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--third-text-color);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+.redefine-countdown .redefine-countdown-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.redefine-countdown .redefine-countdown-display .redefine-countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 28px;
+}
+.redefine-countdown .redefine-countdown-display .redefine-countdown-item .redefine-countdown-value {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.redefine-countdown .redefine-countdown-display .redefine-countdown-item .redefine-countdown-label {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--third-text-color);
+  margin-top: 2px;
+  font-weight: 500;
+}
+.redefine-countdown .redefine-countdown-display .redefine-countdown-divider {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--third-text-color);
+  margin-top: -3px;
+}
 .home-sidebar-container {
   width: 240px;
   height: auto;
@@ -245,129 +391,4 @@
   padding: 5px 0;
   color: var(--second-text-color);
   text-align: center;
-}
-.sidebar-calendar {
-  background-color: var(--second-background-color);
-  border-radius: 18px;
-  padding: 15px;
-  border: 1px solid var(--border-color);
-}
-.sidebar-calendar .calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.sidebar-calendar .calendar-header .calendar-prev,
-.sidebar-calendar .calendar-header .calendar-next {
-  background: transparent;
-  border: none;
-  color: var(--second-text-color);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 5px;
-  border-radius: 9px;
-  transition: all 0.3s ease;
-}
-.sidebar-calendar .calendar-header .calendar-prev:hover,
-.sidebar-calendar .calendar-header .calendar-next:hover {
-  background-color: var(--third-background-color);
-  color: var(--primary-color);
-}
-.sidebar-calendar .calendar-header .calendar-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--second-text-color);
-}
-.sidebar-calendar .calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
-  margin-bottom: 10px;
-}
-.sidebar-calendar .calendar-weekdays span {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--third-text-color);
-  padding: 5px 0;
-}
-.sidebar-calendar .calendar-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 3px;
-}
-.sidebar-calendar .calendar-days .day {
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.85rem;
-  color: var(--second-text-color);
-  border-radius: 9px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.sidebar-calendar .calendar-days .day:hover {
-  background-color: var(--third-background-color);
-}
-.sidebar-calendar .calendar-days .day.today {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-.sidebar-calendar .calendar-days .day.other-month {
-  color: var(--fourth-text-color);
-}
-.sidebar-calendar .calendar-days .day.selected {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-.sidebar-countdown {
-  background-color: var(--second-background-color);
-  border-radius: 18px;
-  padding: 15px;
-  border: 1px solid var(--border-color);
-}
-.sidebar-countdown .countdown-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.sidebar-countdown .countdown-title i {
-  color: var(--primary-color);
-  font-size: 1rem;
-}
-.sidebar-countdown .countdown-title span {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--second-text-color);
-}
-.sidebar-countdown .countdown-target-date {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--third-text-color);
-  margin-bottom: 15px;
-}
-.sidebar-countdown .countdown-display {
-  display: flex;
-  justify-content: space-around;
-  gap: 5px;
-}
-.sidebar-countdown .countdown-display .countdown-item {
-  flex: 1;
-  text-align: center;
-}
-.sidebar-countdown .countdown-display .countdown-item .countdown-value {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-color);
-  font-variant-numeric: tabular-nums;
-}
-.sidebar-countdown .countdown-display .countdown-item .countdown-label {
-  display: block;
-  font-size: 0.7rem;
-  color: var(--third-text-color);
-  margin-top: 2px;
 }
